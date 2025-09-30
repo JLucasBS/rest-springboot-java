@@ -1,10 +1,12 @@
 package dev.jlucasbs.study.model;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.Objects;
 
 public class Person implements Serializable {
 
+    @Serial
     private static final long serialVersionUID = 1L;
 
     private Long id;

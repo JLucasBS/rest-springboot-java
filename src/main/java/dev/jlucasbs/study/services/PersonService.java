@@ -9,7 +9,7 @@ import java.util.logging.Logger;
 @Service
 public class PersonService {
     private final AtomicLong counter = new AtomicLong();
-    private Logger logger = Logger.getLogger(PersonService.class.getName());
+    private final Logger logger = Logger.getLogger(PersonService.class.getName());
 
     public Person findByID(String id) {
         logger.info("Finding person by ID: " + id);
