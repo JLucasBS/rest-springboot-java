@@ -1,6 +1,9 @@
 package dev.jlucasbs.study.services;
 
+import dev.jlucasbs.study.data.dto.PersonDTO;
 import dev.jlucasbs.study.exception.ResourceNotFoundException;
+import static dev.jlucasbs.study.mapper.ObjectMapper.parseListObjects;
+import static dev.jlucasbs.study.mapper.ObjectMapper.parseObject;
 import dev.jlucasbs.study.model.Person;
 import dev.jlucasbs.study.repository.PersonRepository;
 import org.slf4j.Logger;
@@ -17,25 +20,29 @@ public class PersonService {
     @Autowired
     private PersonRepository repository;
 
-    public List<Person> findAll() {
+    public List<PersonDTO> findAll() {
         logger.info("Finding all people");
 
-        return repository.findAll();
+        return parseListObjects(repository.findAll(), PersonDTO.class);
     }
 
-    public Person findByID(Long id) {
+    public PersonDTO findByID(Long id) {
         logger.info("Finding person by ID {}", id);
 
-        return repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("No records found for this ID"));
+        var entity = repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("No records found for this ID"));
+
+        return parseObject(entity, PersonDTO.class);
     }
 
-    public Person create(Person person) {
+    public PersonDTO create(PersonDTO person) {
         logger.info("Creating one person");
 
-        return repository.save(person);
+        var entity = parseObject(person, Person.class);
+
+        return parseObject(repository.save(entity), PersonDTO.class);
     }
 
-    public Person update(Person person) {
+    public PersonDTO update(PersonDTO person) {
         logger.info("Updating one person");
 
         Person entity = repository.findById(person.getId())
@@ -46,7 +53,7 @@ public class PersonService {
         entity.setAddress(person.getAddress());
         entity.setGender(person.getGender());
 
-        return repository.save(person);
+        return parseObject(repository.save(entity),  PersonDTO.class);
     }
 
     public void deleteByID(Long id) {
