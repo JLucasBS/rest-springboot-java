@@ -1,20 +1,22 @@
-package dev.jlucasbs.study.data.dto;
+package dev.jlucasbs.study.data.dto.v2;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.Objects;
 
-public class PersonDTO implements Serializable {
+public class PersonDTOV2 implements Serializable {
 
     @Serial
     private static final long serialVersionUID = 1L;
     private Long id;
     private String firstName;
     private String lastName;
+    private Date bithDate;
     private String address;
     private String gender;
 
-    public PersonDTO() {}
+    public PersonDTOV2() {}
 
     public Long getId() {
         return id;
@@ -56,14 +58,23 @@ public class PersonDTO implements Serializable {
         this.gender = gender;
     }
 
+    public Date getBithDate() {
+        return bithDate;
+    }
+
+    public void setBithDate(Date bithDate) {
+        this.bithDate = bithDate;
+    }
+
     @Override
     public boolean equals(Object o) {
-        if (!(o instanceof PersonDTO person)) return false;
-        return Objects.equals(getId(), person.getId()) && Objects.equals(getFirstName(), person.getFirstName()) && Objects.equals(getLastName(), person.getLastName()) && Objects.equals(getAddress(), person.getAddress()) && Objects.equals(getGender(), person.getGender());
+        if (o == null || getClass() != o.getClass()) return false;
+        PersonDTOV2 that = (PersonDTOV2) o;
+        return Objects.equals(getId(), that.getId()) && Objects.equals(getFirstName(), that.getFirstName()) && Objects.equals(getLastName(), that.getLastName()) && Objects.equals(getBithDate(), that.getBithDate()) && Objects.equals(getAddress(), that.getAddress()) && Objects.equals(getGender(), that.getGender());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getFirstName(), getLastName(), getAddress(), getGender());
+        return Objects.hash(getId(), getFirstName(), getLastName(), getBithDate(), getAddress(), getGender());
     }
 }

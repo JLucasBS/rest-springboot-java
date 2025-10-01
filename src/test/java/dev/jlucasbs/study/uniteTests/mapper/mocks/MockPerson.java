@@ -1,6 +1,6 @@
 package dev.jlucasbs.study.uniteTests.mapper.mocks;
 
-import dev.jlucasbs.study.data.dto.PersonDTO;
+import dev.jlucasbs.study.data.dto.v1.PersonDTO;
 import dev.jlucasbs.study.model.Person;
 
 import java.util.ArrayList;
