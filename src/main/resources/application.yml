@@ -8,7 +8,7 @@ spring:
     password: jlucasbs
   jpa:
     hibernate:
-      ddl-auto:  update
+      ddl-auto:  none
     show-sql: false
     open-in-view: false
 logging:
