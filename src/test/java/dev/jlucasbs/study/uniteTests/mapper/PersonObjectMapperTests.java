@@ -11,7 +11,7 @@ import dev.jlucasbs.study.uniteTests.mapper.mocks.MockPerson;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class ObjectMapperTests {
+public class PersonObjectMapperTests {
     MockPerson inputObject;
 
     @BeforeEach
