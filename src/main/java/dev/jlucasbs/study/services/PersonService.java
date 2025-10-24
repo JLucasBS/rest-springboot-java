@@ -1,4 +1,4 @@
-package dev.jlucasbs.study.unitTests.services;
+package dev.jlucasbs.study.services;
 
 import dev.jlucasbs.study.controllers.PersonController;
 import dev.jlucasbs.study.data.dto.PersonDTO;

@@ -2,7 +2,7 @@ package dev.jlucasbs.study.controllers;
 
 import dev.jlucasbs.study.controllers.docs.BookControllerDocs;
 import dev.jlucasbs.study.data.dto.BookDTO;
-import dev.jlucasbs.study.unitTests.services.BookService;
+import dev.jlucasbs.study.services.BookService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;

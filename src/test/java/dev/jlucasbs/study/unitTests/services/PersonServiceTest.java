@@ -4,6 +4,7 @@ import dev.jlucasbs.study.data.dto.PersonDTO;
 import dev.jlucasbs.study.exception.RequiredObjectIsNullException;
 import dev.jlucasbs.study.model.Person;
 import dev.jlucasbs.study.repository.PersonRepository;
+import dev.jlucasbs.study.services.PersonService;
 import dev.jlucasbs.study.unitTests.mapper.mocks.MockPerson;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
