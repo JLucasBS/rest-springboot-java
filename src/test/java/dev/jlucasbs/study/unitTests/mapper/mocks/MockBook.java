@@ -1,4 +1,4 @@
-package dev.jlucasbs.study.uniteTests.mapper.mocks;
+package dev.jlucasbs.study.unitTests.mapper.mocks;
 
 import dev.jlucasbs.study.data.dto.BookDTO;
 import dev.jlucasbs.study.model.Book;

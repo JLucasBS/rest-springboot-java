@@ -1,4 +1,4 @@
-package dev.jlucasbs.study.services;
+package dev.jlucasbs.study.unitTests.services;
 
 import dev.jlucasbs.study.data.dto.BookDTO;
 import dev.jlucasbs.study.exception.RequiredObjectIsNullException;
@@ -7,6 +7,7 @@ import dev.jlucasbs.study.model.Book;
 import dev.jlucasbs.study.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
@@ -39,10 +40,10 @@ public class BookService {
         return parseObject(bookRepository.save(entity), BookDTO.class);
     }
 
-    public BookDTO update(BookDTO bookDTO) {
+    public BookDTO update(@PathVariable("id") Long id, BookDTO bookDTO) {
         if (bookDTO == null) throw new RequiredObjectIsNullException();
 
-        Book entity = bookRepository.findById(bookDTO.getId())
+        Book entity = bookRepository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("No records found for this ID"));
 
         entity.setAuthor(bookDTO.getAuthor());

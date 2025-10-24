@@ -1,10 +1,10 @@
-package dev.jlucasbs.study.services;
+package dev.jlucasbs.study.unitTests.services;
 
 import dev.jlucasbs.study.data.dto.PersonDTO;
 import dev.jlucasbs.study.exception.RequiredObjectIsNullException;
 import dev.jlucasbs.study.model.Person;
 import dev.jlucasbs.study.repository.PersonRepository;
-import dev.jlucasbs.study.uniteTests.mapper.mocks.MockPerson;
+import dev.jlucasbs.study.unitTests.mapper.mocks.MockPerson;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
@@ -86,7 +86,7 @@ class PersonServiceTest {
     void testCreateWithNullPerson() {
         Exception exception = assertThrows(RequiredObjectIsNullException.class, () -> service.create(null));
 
-        String expectedMessage = "Person object must not be null";
+        String expectedMessage = "Object must not be null";
         String actualMessage = exception.getMessage();
 
         assertTrue(actualMessage.contains(expectedMessage));
@@ -102,7 +102,7 @@ class PersonServiceTest {
         when(repository.findById(1L)).thenReturn(Optional.of(person));
         when(repository.save(person)).thenReturn(person);
 
-        var result = service.update(dto);
+        var result = service.update(dto.getId(), dto);
 
         assertNotNull(result);
         assertNotNull(result.getId());
@@ -117,9 +117,9 @@ class PersonServiceTest {
 
     @Test
     void testUpdateWithNullPerson() {
-        Exception exception = assertThrows(RequiredObjectIsNullException.class, () -> service.update(null));
+        Exception exception = assertThrows(RequiredObjectIsNullException.class, () -> service.update(1L, null));
 
-        String expectedMessage = "Person object must not be null";
+        String expectedMessage = "Object must not be null";
         String actualMessage = exception.getMessage();
 
         assertTrue(actualMessage.contains(expectedMessage));

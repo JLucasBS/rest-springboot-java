@@ -2,7 +2,7 @@ package dev.jlucasbs.study.controllers;
 
 import dev.jlucasbs.study.controllers.docs.BookControllerDocs;
 import dev.jlucasbs.study.data.dto.BookDTO;
-import dev.jlucasbs.study.services.BookService;
+import dev.jlucasbs.study.unitTests.services.BookService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -32,14 +32,14 @@ public class BookController implements BookControllerDocs {
 
     @PostMapping(consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_YAML_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_YAML_VALUE})
     @Override
-    public BookDTO create(@RequestBody BookDTO person) {
-        return service.create(person);
+    public BookDTO create(@RequestBody BookDTO book) {
+        return service.create(book);
     }
 
-    @PutMapping(consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_YAML_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_YAML_VALUE})
+    @PutMapping(value = "{id}", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_YAML_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_YAML_VALUE})
     @Override
-    public BookDTO update(@RequestBody BookDTO person) {
-        return service.update(person);
+    public BookDTO update(@PathVariable("id") Long id, @RequestBody BookDTO book) {
+        return service.update(id, book);
     }
 
     @DeleteMapping(value = "/{id}")

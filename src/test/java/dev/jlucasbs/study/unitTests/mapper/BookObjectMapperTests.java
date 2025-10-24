@@ -1,8 +1,8 @@
-package dev.jlucasbs.study.uniteTests.mapper;
+package dev.jlucasbs.study.unitTests.mapper;
 
 import dev.jlucasbs.study.data.dto.BookDTO;
 import dev.jlucasbs.study.model.Book;
-import dev.jlucasbs.study.uniteTests.mapper.mocks.MockBook;
+import dev.jlucasbs.study.unitTests.mapper.mocks.MockBook;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
