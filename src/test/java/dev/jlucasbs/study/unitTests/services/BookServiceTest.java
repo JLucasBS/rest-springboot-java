@@ -4,6 +4,7 @@ import dev.jlucasbs.study.data.dto.BookDTO;
 import dev.jlucasbs.study.exception.RequiredObjectIsNullException;
 import dev.jlucasbs.study.model.Book;
 import dev.jlucasbs.study.repository.BookRepository;
+import dev.jlucasbs.study.services.BookService;
 import dev.jlucasbs.study.unitTests.mapper.mocks.MockBook;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
