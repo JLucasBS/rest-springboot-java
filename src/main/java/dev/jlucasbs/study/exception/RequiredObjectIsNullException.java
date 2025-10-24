@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 public class RequiredObjectIsNullException extends RuntimeException {
 
     public RequiredObjectIsNullException() {
-        super("Person object must not be null");
+        super("Object must not be null");
     }
 
     public RequiredObjectIsNullException(String message) {

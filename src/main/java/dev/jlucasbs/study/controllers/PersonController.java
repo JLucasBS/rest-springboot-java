@@ -2,7 +2,7 @@ package dev.jlucasbs.study.controllers;
 
 import dev.jlucasbs.study.controllers.docs.PersonControllerDocs;
 import dev.jlucasbs.study.data.dto.PersonDTO;
-import dev.jlucasbs.study.services.PersonService;
+import dev.jlucasbs.study.unitTests.services.PersonService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -36,10 +36,10 @@ public class PersonController implements PersonControllerDocs {
         return service.create(person);
     }
 
-    @PutMapping(consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_YAML_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_YAML_VALUE})
+    @PutMapping(value = "/{id} ", consumes = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_YAML_VALUE}, produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_YAML_VALUE})
     @Override
-    public PersonDTO update(@RequestBody PersonDTO person) {
-        return service.update(person);
+    public PersonDTO update(@PathVariable("id") Long id, @RequestBody PersonDTO person) {
+        return service.update(id, person);
     }
 
     @DeleteMapping(value = "/{id}")

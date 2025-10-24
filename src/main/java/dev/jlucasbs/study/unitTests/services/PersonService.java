@@ -1,4 +1,4 @@
-package dev.jlucasbs.study.services;
+package dev.jlucasbs.study.unitTests.services;
 
 import dev.jlucasbs.study.controllers.PersonController;
 import dev.jlucasbs.study.data.dto.PersonDTO;
@@ -58,12 +58,12 @@ public class PersonService {
         return dto;
     }
 
-    public PersonDTO update(PersonDTO person) {
+    public PersonDTO update(Long id, PersonDTO person) {
         logger.info("Updating one person");
 
         if (person == null) throw new RequiredObjectIsNullException();
 
-        Person entity = repository.findById(person.getId())
+        Person entity = repository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("No records found for this ID"));
 
         entity.setFirstName(person.getFirstName());
@@ -89,7 +89,7 @@ public class PersonService {
         dto.add(linkTo(methodOn(PersonController.class).findByID(dto.getId())).withSelfRel().withType("GET"));
         dto.add(linkTo(methodOn(PersonController.class).findAll()).withRel("findAll").withType("GET"));
         dto.add(linkTo(methodOn(PersonController.class).create(dto)).withRel("create").withType("POST"));
-        dto.add(linkTo(methodOn(PersonController.class).update(dto)).withRel("update").withType("PUT"));
+        dto.add(linkTo(methodOn(PersonController.class).update(dto.getId(), dto)).withRel("update").withType("PUT"));
         dto.add(linkTo(methodOn(PersonController.class).delete(dto.getId())).withRel("delete").withType("DELETE"));
     }
 }

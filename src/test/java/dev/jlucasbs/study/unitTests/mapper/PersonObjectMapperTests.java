@@ -1,4 +1,4 @@
-package dev.jlucasbs.study.uniteTests.mapper;
+package dev.jlucasbs.study.unitTests.mapper;
 import static dev.jlucasbs.study.mapper.ObjectMapper.parseListObjects;
 import static dev.jlucasbs.study.mapper.ObjectMapper.parseObject;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -7,7 +7,7 @@ import java.util.List;
 
 import dev.jlucasbs.study.data.dto.PersonDTO;
 import dev.jlucasbs.study.model.Person;
-import dev.jlucasbs.study.uniteTests.mapper.mocks.MockPerson;
+import dev.jlucasbs.study.unitTests.mapper.mocks.MockPerson;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
