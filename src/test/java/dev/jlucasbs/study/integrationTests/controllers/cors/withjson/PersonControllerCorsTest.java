@@ -1,4 +1,4 @@
-package dev.jlucasbs.study.integrationTests.controllers.withjson;
+package dev.jlucasbs.study.integrationTests.controllers.cors.withjson;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.DeserializationFeature;
@@ -20,7 +20,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-class PersonControllerTest extends AbstractIntegrationTest {
+class PersonControllerCorsTest extends AbstractIntegrationTest {
 
     private static RequestSpecification specification;
     private static ObjectMapper objectMapper;
@@ -73,6 +73,8 @@ class PersonControllerTest extends AbstractIntegrationTest {
         assertEquals("Doe", createdPerson.getLastName());
         assertEquals("New York City - New York - USA", createdPerson.getAddress());
         assertEquals("Male", createdPerson.getGender());
+        assertTrue(createdPerson.getEnabled());
+
     }
 
     @Test
@@ -134,6 +136,7 @@ class PersonControllerTest extends AbstractIntegrationTest {
         assertEquals("Doe", foundPerson.getLastName());
         assertEquals("New York City - New York - USA", foundPerson.getAddress());
         assertEquals("Male", foundPerson.getGender());
+        assertTrue(foundPerson.getEnabled());
     }
 
     @Test
@@ -166,5 +169,6 @@ class PersonControllerTest extends AbstractIntegrationTest {
         person.setLastName("Doe");
         person.setAddress("New York City - New York - USA");
         person.setGender("Male");
+        person.setEnabled(true);
     }
 }
