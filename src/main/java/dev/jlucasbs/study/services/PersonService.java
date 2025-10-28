@@ -8,6 +8,7 @@ import static dev.jlucasbs.study.mapper.ObjectMapper.parseListObjects;
 import static dev.jlucasbs.study.mapper.ObjectMapper.parseObject;
 import dev.jlucasbs.study.model.Person;
 import dev.jlucasbs.study.repository.PersonRepository;
+import jakarta.transaction.Transactional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -77,7 +78,7 @@ public class PersonService {
     }
 
     public void deleteByID(Long id) {
-        logger.info("Deleting person by ID: " + id);
+        logger.info("Deleting a person by ID: {}", id);
 
         Person entity = repository.findById(id)
                 .orElseThrow(() -> new ResourceNotFoundException("No records found for this ID"));
@@ -85,11 +86,24 @@ public class PersonService {
         repository.delete(entity);
     }
 
+    @Transactional
+    public PersonDTO disablePerson(Long id) {
+        logger.info("Disabling a person by ID: {}", id);
+
+        repository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("No records found for this ID"));
+
+        repository.disablePerson(id);
+
+        return parseObject(repository.findById(id).get(), PersonDTO.class);
+    }
+
     private void addHateoasLink(PersonDTO dto) {
         dto.add(linkTo(methodOn(PersonController.class).findByID(dto.getId())).withSelfRel().withType("GET"));
         dto.add(linkTo(methodOn(PersonController.class).findAll()).withRel("findAll").withType("GET"));
         dto.add(linkTo(methodOn(PersonController.class).create(dto)).withRel("create").withType("POST"));
         dto.add(linkTo(methodOn(PersonController.class).update(dto.getId(), dto)).withRel("update").withType("PUT"));
+        dto.add(linkTo(methodOn(PersonController.class).disablePerson(dto.getId())).withRel("disable").withType("PATCH"));
         dto.add(linkTo(methodOn(PersonController.class).delete(dto.getId())).withRel("delete").withType("DELETE"));
     }
 }
